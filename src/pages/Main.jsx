@@ -4,6 +4,7 @@ import ClassesContext from './../context/classesContext';
 import AboutInfo from './components/AboutInfo';
 import UpdateCards from './components/UpdateCards';
 import SearchSelect from './components/SearchSelect';
+import LoaderDoggo from './components/LoaderDoggo';
 //materialUI
 import { Grid, Hidden } from '@material-ui/core';
 import { Container, Typography, Divider } from '@material-ui/core';
@@ -17,7 +18,7 @@ const Main = ({ location }) => {
     const classes = useContext(ClassesContext);
     // const [approvedCards, setApprovedCards] = useState([]);
     // const [pendingCards, setPendingCards] = useState([]);
-
+    window.scrollTo(0, 0);
 
     // //load cards
     // useEffect(() => {
@@ -53,25 +54,26 @@ const Main = ({ location }) => {
     return (
         <Container className={classes.root}>
             <Grid container spacing={2} >
-                <Grid item xl={2}>
-
+                <Grid item lg={1} xl={2} >
+                    <img scr={LoaderDoggo} style={{ visibility: "hidden" }} />
                 </Grid>
-                <Grid item xs={12} md={6} >
+                <Grid item xs={12} lg={10} xl={6} >
                     <div style={{ marginTop: 50 }}>
+
                         <SearchSelect />
-                        <div style={{ padding: 20 }}>
-                            <Typography component="h1" variant="h4" color="textPrimary" style={{ marginTop: 20 }}>
-                                Considering to travel at this moment?
+                        <div className={` ${classes.homeWelcomeText} ${classes.flatContainer}`}>
+                            <Typography component="h1" variant="h4" style={{ color: "#34515E" }}>
+                                Traveling during COVID-19 pandemic?
                     </Typography>
-                            <Typography component="h2" variant="h5" color="textSecondary" style={{ marginTop: 5, width: "80%" }}>
-                                Find essential information for a safe trip during Covid-19 pandemic
+                            <Typography component="h2" variant="h5" color="primary" className={classes.mainSubText}>
+                                Find essential information to for a safe and enjoyable trip
                     </Typography>
                         </div>
                         <AboutInfo />
                     </div>
                 </Grid>
-                <Grid item md={1} />
-                <Grid item xs={12} md={4} xl={3}>
+                <Grid item lg={1} />
+                <Grid item xs={12} xl={3}>
                     {/* <Typography component="h3" variant="h6" color="textPrimary" style={{ marginTop: 20 }}>
                         UPDATES
                     </Typography>

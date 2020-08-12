@@ -6,7 +6,6 @@ import ClassesContext from './../../context/classesContext';
 import SearchIcon from '@material-ui/icons/Search';
 import { Button } from '@material-ui/core';
 import history from './../../utils/history';
-
 const options = [
     {
         name: "type or select",
@@ -1073,7 +1072,7 @@ const options = [
         value: "SYR",
     },
     {
-        name: "Taiwan, Province of China",
+        name: "Taiwan",
         iso2: "TW",
         value: "TWN",
     },
@@ -1248,11 +1247,13 @@ const SearchSelect = ({ text = true }) => {
     }
 
     const handleSearch = (id) => {
+
         history.push(`/${id}`)
+        window.scrollTo(0, 0);
     }
 
     return (
-        <div style={{ width: "100%", minWidth: 170, maxWidth: 600 }}>
+        <div style={{ width: "100%", minWidth: 170, maxWidth: 600, margin: "0px auto" }}>
             {/* <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}> */}
             <div className={classes.search} style={{ flexGrow: 5 }}>
                 <div className={classes.searchIcon}>
@@ -1293,7 +1294,7 @@ const SearchSelect = ({ text = true }) => {
 
             </div>
             {text && <Typography color="textPrimary" variant="subtitle1">
-                Type and select any country or state <br /> some countries may crash, we are still working on it!
+                Type and select any country or state
     </Typography>}
         </ div>
     )

@@ -12,6 +12,7 @@ import themeObject from "./theme";
 //---------------------Common styles---------------------
 const mainColor = "#ffd100";
 const secondaryColor = '#ffc371';
+const unColor = "rgba(91,185,149,0.8)";
 const blueWhiteShadow = "0px 12px 16px #EAF0F8";
 const backgroundColor = "#EFEEEE";
 const darkShadow = "0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15)";
@@ -75,6 +76,19 @@ const stylingObject = (theme) => ({
     //     },
     // },
     //=================================Home================================
+    mainSubText: {
+        marginTop: 5, marginLeft: 20,
+        width: "70%",
+        [theme.breakpoints.down(500)]: {
+            marginLeft: 0,
+            width: "100%",
+        },
+    },
+    homeWelcomeText: {
+        padding: 20, backgroundColor: "#FAACA8",
+        background: `${unColor} !important`,
+        margin: "20px auto 0px auto", maxWidth: 500
+    },
     aboutInfoContainer: {
         paddingTop: 15,
         display: "flex",
@@ -94,25 +108,21 @@ const stylingObject = (theme) => ({
     aboutInfoImageContainer: {
         width: 120,
         height: 120,
+        // position: "relative",
         border: "0px solid #fff",
         borderRadius: "50%",
-        // backgroundImage: "url('./../images/travel.svg')", /* The image used */
-        // backgroundColor: #cccccc, /* Used if the image is unavailable */
-        backgroundPosition: "center",
-        /* Center the image */
-        backgroundRepeat: "no-repeat",
-        /* Do not repeat the image */
-        backgroundSize: "100px 100px",
-        /* Resize the background image to cover the entire container */
-        boxShadow: blueWhiteShadow,
+        display: "flex",
+        justifyContent: "center", alignItems: 'center',
+        boxShadow: darkShadow,
+        overflow: "hidden",
+        [theme.breakpoints.down(500)]: {
+            width: 70,
+            height: 70,
+        },
     },
-    aboutInfoInnerShadow: {
-        width: 120,
-        height: 120,
-        border: "0px solid #fff",
-        borderRadius: "50%",
-        opacity: "15%",
-        background: "linear-gradient(145deg,  #e6e6e6, #000000)"
+    aboutInfoImage: {
+        width: "80%",
+        //objectFit: "cover"
     },
     updateCardsContainer: {
         paddingTop: 10,
@@ -288,15 +298,40 @@ const stylingObject = (theme) => ({
         // width: "100%",
         maxWidth: 250,
         margin: "0px auto",
-        height: 120,
+        //height: 120,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
+        padding: 30,
+        [theme.breakpoints.down(500)]: {
+            padding: 10, paddingTop: 20
+        },
     },
     mobilityInfo: {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center"
+    },
+    mobilityNumber: {
+        fontWeight: 600, fontSize: "2.7em",
+        [theme.breakpoints.down(500)]: {
+            fontSize: "1.7em",
+        },
+    },
+    mobilityIcon: {
+        fontSize: "2.5em",
+        [theme.breakpoints.down(500)]: {
+            fontSize: "1.5em",
+        },
+    },
+    mobilityCategory: {
+        lineHeight: 1.2, marginTop: 10, fontSize: "1.2em",
+        [theme.breakpoints.down(500)]: {
+            //height: 2.4,
+            height: "2.4em",
+            fontSize: "1em",
+            width: "70%"
+        },
     },
     positiveBackground: {
         // textShadow: "-8px -8px 12px rgba(255,255,255,0.4),8px 8px 12px rgba(0,0,0,0.08)",
@@ -398,7 +433,8 @@ const stylingObject = (theme) => ({
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        height: 80,
+        height: "auto",
+        padding: "5px 0px"
         //  width: "100%"
     },
     title: {
@@ -454,26 +490,38 @@ const stylingObject = (theme) => ({
     notchedOutline: {},
 
 
-    //_______________________bottom bar__________________________
-    bottomBar: {
-        top: 'auto',
-        zIndex: 50,
-        bottom: 0,
-        display: 'none',
+    //_______________________footer bar__________________________
+    footerContainer: {
+        width: "100vw", height: "100vh",
+        position: "relative",
+        padding: 10,
+        boxSizing: "border-box",
+        paddingTop: 30,
+        background: " #1e323e",
+        display: "flex", justifyContent: 'center', flexDirection: "column",
         [theme.breakpoints.down(500)]: {
-            display: 'block',
+            height: "auto"
         },
     },
-    //   fabButton: {
-    //     position: 'absolute',
-    //     zIndex: 1,
-    //     top: -30,
-    //     left: 0,
-    //     right: 0,
-    //     margin: '0 auto',
-    //   },
-
-
+    footer2020Text: {
+        margin: "20px auto"
+    },
+    footerImageContainer: {
+        width: "90%",
+        margin: "5px auto",
+        maxWidth: 300, borderRadius: 30,
+        display: "flex", flexDirection: "column", justifyContent: "center",
+    },
+    footerAboutUsImage: {
+        width: "100%",
+        margin: "10px 0px",
+        borderRadius: 30
+    },
+    footerButton: {
+        background: "linear-gradient(145deg, #61c69f, #52a786)",
+        //boxShadow: "15px 15px 30px #4d9d7f, -15px -15px 30px #69d5ab",
+        margin: "10px auto", marginLeft: "auto", marginRight: "auto", color: "#FFF"
+    },
 });
 
 

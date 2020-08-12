@@ -28,7 +28,8 @@ const themeObject = {
             main: '#5BB995',
         },
         text: {
-            primary: "#66727C"
+            primary: "#66727C",
+
         }
     },
 };

@@ -16,7 +16,8 @@ import { getCountry } from './../api/api';
 import processCountryData from '../utils/ligma';
 import LoaderDoggo from './components/LoaderDoggo';
 import history from './../utils/history';
-
+//utils
+import ScrollToTop from './../utils/ScrollToTop';
 
 
 
@@ -93,25 +94,25 @@ const MobilityCards = ({ dataObj }) => {
         <Grid container spacing={2} >
             {dataObj.map(c => {
                 let Icon = c.icon;
-                return <Grid key={c.key} item xs={12}>
+                return <Grid key={c.key} item xs={6} lg={12}>
 
-                    <div className={`${classes.flatContainer} ${classes.mobilityContainer}`} >
-                        <div style={{ padding: 30 }}>
+                    <div className={`${classes.mobilityContainer} ${classes.flatContainer} `} >
 
-                            <div className={classes.mobilityInfo} >
-                                <div className={`${classes.concaveContainer} ${classes[`${c.color}InsetShadow`]}`} style={{ padding: "5px 6px", borderRadius: 10, }}>
-                                    <Icon className={`${classes[`${c.color}DataText`]}`} style={{ fontSize: "2em" }} />
-                                </div>
-                                <Typography component="p" variant="h4" color="textPrimary" align="center"
-                                    style={{ fontWeight: 600, fontSize: "2.7em" }} >
-                                    {c.value}
-                                </Typography>
+
+                        <div className={classes.mobilityInfo} >
+                            <div className={`${classes.concaveContainer} ${classes[`${c.color}InsetShadow`]}`} style={{ padding: "5px 6px", borderRadius: 10, }}>
+                                <Icon className={`${classes[`${c.color}DataText`]} ${classes.mobilityIcon}`} />
                             </div>
-
-                            <Typography component="p" variant="subtitle1" color="textSecondary" style={{ lineHeight: 1.2, marginTop: 10, fontSize: "1.2em" }}>
-                                {c.text}
+                            <Typography component="p" variant="h4" color="textPrimary" align="center"
+                                className={classes.mobilityNumber} >
+                                {c.value}
                             </Typography>
                         </div>
+
+                        <Typography component="p" variant="subtitle1" color="textSecondary" className={classes.mobilityCategory}>
+                            {c.text}
+                        </Typography>
+
                     </div>
                 </Grid>
             })}</Grid>
@@ -184,12 +185,14 @@ const Country = ({ match, location }) => {
     const [themeColor, setThemeColor] = useState(undefined)
 
 
+
     useEffect(() => {
         const id = match.params.id;
         console.log(id)
         handleLoader(true)
         const ligma = async (id) => {
             // console.log('effect')
+
             try {
                 const response = await getCountry(id);
                 console.log(response);
@@ -198,7 +201,7 @@ const Country = ({ match, location }) => {
                     const countryData = processCountryData(response.data);
                     console.log('processed data', countryData);
                     setCountry(countryData);
-                    setTimeout(handleLoader, 3000) //5s loading after getting data
+                    setTimeout(handleLoader, 1000) //1s loading after getting data
                     //generalInfo, travelInfo, mobilityInfo, policyInfo
                 } else throw "no data"
             } catch (exception) {
@@ -296,7 +299,7 @@ const Country = ({ match, location }) => {
                     {/* ==================Containment Policies======================= */}
                     <Grid item xs={12} lg={4} xl={3} style={{ margin: "0px auto" }}>
                         {/* ==============mobility=============== */}
-                        {country.mobilityInfo && <React.Fragment>  <Typography variant="h5" color="textPrimary" >
+                        {country.mobilityInfo && <React.Fragment>  <Typography variant="h5" color="textPrimary" style={{ marginBottom: 20 }}>
                             Mobility trends
                    </Typography>
 

@@ -10,11 +10,12 @@ import "react-toastify/dist/ReactToastify.css";
 import { Container } from '@material-ui/core';
 import Main from './pages/Main';
 import NavBar from './pages/components/NavBar';
+import Footer from './pages/components/Footer';
 import Languages from './pages/Languages';
 import Country from './pages/Country';
 //context
 import ClassesContext from './context/classesContext';
-
+import ScrollToTop from './utils/ScrollToTop';
 
 //-------styling hooks------
 const useStyles = makeStyles(stylingObject);
@@ -22,7 +23,7 @@ const useStyles = makeStyles(stylingObject);
 //-------app function--------
 function App() {
   const classes = useStyles();
-
+  ScrollToTop();
   return (
     <ThemeProvider theme={theme}>
       <ClassesContext.Provider value={classes}>
@@ -36,7 +37,7 @@ function App() {
             <Redirect from="*" to="" />
           </Switch>
         </Container>
-        {/* // <BottomNav /> */}
+        <Footer />
       </ClassesContext.Provider>
     </ThemeProvider>
   );
