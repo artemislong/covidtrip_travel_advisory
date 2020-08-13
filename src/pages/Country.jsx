@@ -260,7 +260,7 @@ const Country = ({ match, location }) => {
                     <HomeIcon style={{ fontSize: "2em" }} />
                 </Button> */}
                 <Grid container  >
-                    <Grid item xl={1} />
+                    <Grid item xs={0} xl={1} />
                     <Grid item xs={12} lg={7} xl={6} >
                         <div style={{ width: "100%", margin: "0px auto" }}>
                             <div className={classes.countryNameFlag}>
@@ -315,7 +315,7 @@ const Country = ({ match, location }) => {
                         </div>
                     </Grid>
 
-                    <Grid item xl={1} />
+                    <Grid item xs={0} xl={1} />
 
                     {/* ==================Containment Policies======================= */}
                     <Grid item xs={12} lg={4} xl={3} style={{ margin: "0px auto" }}>
@@ -336,7 +336,7 @@ const Country = ({ match, location }) => {
                         </React.Fragment>}
 
                     </Grid>
-                    <Grid item xl={1} />
+                    <Grid item xs={0} xl={1} />
 
 
                 </Grid>

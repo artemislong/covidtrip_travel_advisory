@@ -53,8 +53,8 @@ const Main = () => {
     return (
         <Container className={classes.root}>
             <Grid container spacing={2} >
-                <Grid item lg={1} xl={2} >
-                    <img src={shiba} style={{ visibility: "hidden" }} />
+                <Grid item xs={0} lg={1} xl={2} >
+
                 </Grid>
                 <Grid item xs={12} lg={10} xl={6} >
                     <div style={{ marginTop: 50 }}>
@@ -71,7 +71,7 @@ const Main = () => {
                         <AboutInfo />
                     </div>
                 </Grid>
-                <Grid item lg={1} />
+                <Grid item xs={0} lg={1} />
                 <Grid item xs={12} xl={3}>
                     {/* <Typography component="h3" variant="h6" color="textPrimary" style={{ marginTop: 20 }}>
                         UPDATES
