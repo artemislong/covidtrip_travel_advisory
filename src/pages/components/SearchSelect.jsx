@@ -1,15 +1,17 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState } from 'react'
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import ClassesContext from './../../context/classesContext';
 import SearchIcon from '@material-ui/icons/Search';
-import { Button } from '@material-ui/core';
+
 import history from './../../utils/history';
+import { useTranslation } from 'react-i18next';
+import countryConverter from "i18n-iso-countries";
 const options = [
     {
-        name: "type or select",
-        value: ""
+        name: "ex: Wakanda",
+        value: undefined
     },
     {
         name: "Afghanistan",
@@ -1236,8 +1238,11 @@ const options = [
 
 const SearchSelect = ({ text = true }) => {
     const classes = useContext(ClassesContext);
+    const { t, i18n } = useTranslation();
     const [selected, setSelected] = useState(options[0]);
-
+    countryConverter.registerLocale(require(`i18n-iso-countries/langs/en.json`));
+    countryConverter.registerLocale(require(`i18n-iso-countries/langs/vi.json`));
+    countryConverter.registerLocale(require(`i18n-iso-countries/langs/ru.json`));
 
     const handleCountry = (country) => {
         // console.log("old selected", selected)
@@ -1251,7 +1256,7 @@ const SearchSelect = ({ text = true }) => {
         history.push(`/${id}`)
         window.scrollTo(0, 0);
     }
-
+    console.log(t("CheckLanguage"))
     return (
         <div style={{ width: "100%", minWidth: 170, maxWidth: 600, margin: "0px auto" }}>
             {/* <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}> */}
@@ -1262,7 +1267,7 @@ const SearchSelect = ({ text = true }) => {
                 <Autocomplete
                     id="countries"
                     options={options}
-                    getOptionLabel={(option) => option.name}
+                    getOptionLabel={(option) => (option.value) ? countryConverter.getName(option.value, t("CheckLanguage")) : option.name}
                     style={{ width: "90%" }}
                     value={selected}
                     onChange={(event, newValue) => {
@@ -1294,8 +1299,8 @@ const SearchSelect = ({ text = true }) => {
 
             </div>
             {text && <Typography color="textPrimary" variant="subtitle1">
-                Type and select any country or state
-    </Typography>}
+                {t(" Type and select any country or state")}
+            </Typography>}
         </ div>
     )
 }

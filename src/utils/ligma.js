@@ -50,15 +50,15 @@ const content = {
                 color: "green"
             },
             1: {
-                label: "recommend closing or recommend work from home",
+                label: "recommend closing/work from home",
                 color: "blue"
             },
             2: {
-                label: "require closing or work from home for some",
+                label: "require closing/work from home for some",
                 color: "yellow"
             },
             3: {
-                label: " require closing or work from home for all-but-essential workplaces ",
+                label: "require closing/work from home for most workplaces",
                 color: "red"
             },
         },
@@ -86,7 +86,7 @@ const content = {
                 color: "green"
             },
             1: {
-                label: "restrictions on very large gatherings above 1000 people",
+                label: "restrictions on large gatherings above 1000 people",
                 color: "blue"
             },
             2: {
@@ -110,7 +110,7 @@ const content = {
                 color: "green"
             },
             1: {
-                label: "recommend closing or significantly reduce available transport",
+                label: "recommend closing or reduce available transport",
                 color: "yellow"
             },
             2: {
@@ -190,7 +190,7 @@ const content = {
                 color: "blue"
             },
             2: {
-                label: "coordinated public information campaign (eg across traditional and social media)",
+                label: "coordinated public information campaign (eg across traditional and social media",
                 color: "green"
             },
         },
@@ -202,7 +202,7 @@ const content = {
                 color: "yellow"
             },
             1: {
-                label: "only those who both have symptoms AND meet specific criteria",
+                label: "only those who have symptoms and meet specific criteria",
                 color: "purple"
             },
             2: {
@@ -222,7 +222,7 @@ const content = {
                 color: "yellow"
             },
             1: {
-                label: "limited contact tracing; not done for all cases",
+                label: "limited contact tracing/not done for all cases",
                 color: "blue"
             },
             2: {
@@ -232,32 +232,20 @@ const content = {
         },
     },
     travelAdvisoryContent: {
-        1: { color: "green", title: "Level 1: low risk" },
-        3: { color: "blue", title: "Level 2: exercise caution" },
-        4: { color: "yellow", title: "Level 3: reconsider travel" },
-        5: { color: "red", title: "Level 4: do not travel" },
+        1: { color: "green", title: "Level 1 - low risk" },
+        3: { color: "blue", title: "Level 2 - exercise caution" },
+        4: { color: "yellow", title: "Level 3 - reconsider travel" },
+        5: { color: "red", title: "Level 4 - do not travel" },
     },
     mobilityContent: {
         retail: { key: "retail", text: "retail & recreation", icon: LocalMallIcon },
         grocery: { key: "grocery", text: "grocery & pharmacy", icon: LocalGroceryStoreIcon },
-        parks: { key: "parks", text: "parks ", icon: EmojiNatureIcon },
+        parks: { key: "parks", text: "parks", icon: EmojiNatureIcon },
         transit: { key: "transit", text: "transit stations", icon: CommuteIcon },
         workplaces: { key: "workplace", text: "workplaces", icon: WorkIcon },
-        residential: { key: "residential", text: "residential ", icon: HomeIcon },
+        residential: { key: "residential", text: "residential", icon: HomeIcon },
     }
 }
-
-
-const getEnglishDate = (data) => {
-    let date = new Date(data);
-    const month = date.toLocaleString('default', { month: 'long' });
-    const day = date.getDate();
-
-    // last digit sampleNumber % 10
-    const datePrefix = (day % 10 === 2) ? "nd" : (day % 10 === 3) ? "rd" : "th";
-    date = `${month} ${day}${datePrefix}`
-    return date;
-};
 
 const getGeneralInfo = (data) => {
 
@@ -265,26 +253,27 @@ const getGeneralInfo = (data) => {
     const countryName = data.Country;
     const cases = { new: data.NewConfirmed, total: data.TotalConfirmed };
     const recovered = { new: data.NewRecovered, total: data.TotalRecovered };
-    const date = getEnglishDate(data.Date);
+    const date = data.Date;
     result = { countryName, cases, recovered, date }
 
     return result;
 };
 
 const getTravelData = (restrictions, advisory) => {
+
     let result = {};
     //us advisory
-    console.log("advisory", advisory)
+    //console.log("advisory", advisory)
     if (advisory) {
         let adviseValue = Math.round(advisory.score);
         adviseValue = (adviseValue === 2) ? 1 : adviseValue; //if equals 2 then make it 1
         //4.5 - 5: extreme, 3.5 - 4.5 high risk, 2.5-3.5 medium, <2.5 low
-        console.log(adviseValue)
+        //console.log(adviseValue)
         const titleAndColor = content.travelAdvisoryContent[adviseValue];
         result.advisory = {
             title: titleAndColor.title,
             color: titleAndColor.color,
-            date: getEnglishDate(advisory.updated)
+            date: advisory.updated,
         }
     } else {
         result.advisory = {
@@ -306,12 +295,13 @@ const getTravelData = (restrictions, advisory) => {
 
 
 const getMobilityData = (data) => {
-    console.log("mobility data processing", data)
+
+    //console.log("mobility data processing", data)
     const getColor = (value) => (value < -25) ? "red" : (value < 0) ? "yellow" : (value === 0) ? "blue" : (value > 0) ? "green" : "neutral";
     const getValue = (value) => ((typeof value) === "number") ? value + "%" : <span>&ndash;</span>
 
 
-    const date = getEnglishDate(data.date);
+    const date = data.date;
     data = {
         retail: data.retail_and_recreation_percent_change_from_baseline,
         grocery: data.grocery_and_pharmacy_percent_change_from_baseline,
@@ -325,7 +315,7 @@ const getMobilityData = (data) => {
 
     let array = []
     for (let i in data) {
-        console.log("mobility", i, data[i])
+        //console.log("mobility", i, data[i])
         let obj = {
             ...result[i],
             value: getValue(data[i]),
@@ -333,21 +323,22 @@ const getMobilityData = (data) => {
         };
         array.push(obj)
     }
-    console.log("mobility array", array)
+    // console.log("mobility array", array)
     result = { date, array }
     return result;
 
 };
 
 const getPolicyData = (data) => {
+
     let result = {
         stringency: data.stringency,
-        date: getEnglishDate(data.policies.date_last_updated),
+        date: data.policies.date_last_updated,
         healthArray: [],
         containmentArray: [],
     };
 
-    delete data.policies.date_last_updated //delete date 
+    delete data.policies.date_last_updated //delete date
 
     const policies = data.policies;
 
@@ -375,7 +366,7 @@ const getPolicyData = (data) => {
     return result;
 };
 
-const processCountryData = (data) => {
+const processCountryData = (data, language) => {
 
     const generalInfo = (data.general_info) ? getGeneralInfo(data.general_info) : { cases: undefined, recovered: undefined };
 
@@ -391,11 +382,11 @@ const processCountryData = (data) => {
     }
 
 
-    let policyInfo = undefined;
+    let policyInfo = { containmentArray: undefined, healthArray: undefined, date: '' };
     if (data.government_response_data) {
-        policyInfo = (data.government_response_data) ? getMobilityData(data.government_response_data) : undefined;
+        policyInfo = (data.government_response_data) ? getPolicyData(data.government_response_data) : policyInfo;
     } else {
-        policyInfo = (data.government_response) ? getMobilityData(data.government_response) : undefined;
+        policyInfo = (data.government_response) ? getPolicyData(data.government_response) : policyInfo;
     }
 
 

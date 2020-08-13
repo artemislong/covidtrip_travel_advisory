@@ -1,47 +1,51 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { useLocation } from "react-router-dom";
 import ClassesContext from '../../context/classesContext';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import HomeIcon from '@material-ui/icons/Home';
-import TranslateIcon from '@material-ui/icons/Translate';
 import history from './../../utils/history';
+import vietnamFlag from './../../images/vietnamFlag.svg'
+import englishFlag from './../../images/englishFlag.svg'
+import { useTranslation } from 'react-i18next';
 import SearchSelect from './SearchSelect';
 
-const NavMenu = ({ }) => {
-
+const NavMenu = () => {
+    const { t, i18n } = useTranslation();
     const classes = useContext(ClassesContext);
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const isMenuOpen = Boolean(anchorEl);
+    // const [anchorEl, setAnchorEl] = React.useState(null);
+    // const isMenuOpen = Boolean(anchorEl);
 
     let location = useLocation();
 
-    const handleProfileMenuOpen = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+    // const handleProfileMenuOpen = (event) => {
+    //     setAnchorEl(event.currentTarget);
+    // };
 
-    const handleMenuClose = () => {
-        setAnchorEl(null);
-    };
+    // const handleMenuClose = () => {
+    //     setAnchorEl(null);
+    // };
 
-    const renderProfileMenu = (
-        <Menu
-            anchorEl={anchorEl}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            id={'primary-search-account-menu'}
-            keepMounted
-            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-            open={isMenuOpen}
-            onClose={handleMenuClose}
-        >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-        </Menu>
-    );
+    // const renderProfileMenu = (
+    //     <Menu
+    //         anchorEl={anchorEl}
+    //         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+    //         id={'primary-search-account-menu'}
+    //         keepMounted
+    //         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+    //         open={isMenuOpen}
+    //         onClose={handleMenuClose}
+    //     >
+    //         <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+    //         <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+    //     </Menu>
+    // );
+    const handleLanguage = () => {
+        console.log("changing language", t("CheckLanguage"))
+        i18n.changeLanguage((t("CheckLanguage") === "en") ? "vi" : "en");
+        history.push(location.pathname)
+        window.scrollTo(0, 0);
+        console.log("changed language", t("CheckLanguage"))
+    };
 
     return (
         <React.Fragment>
@@ -49,11 +53,11 @@ const NavMenu = ({ }) => {
             {(location.pathname !== '/') && <SearchSelect text={false} />}
             {/* ----------------other icon buttons------------ */}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-around" }}>
-                <IconButton title="go home" color="inherit" className={classes.smallCircle} onClick={() => history.push('/')}>
+                <IconButton title={t("home page")} color="inherit" className={classes.smallCircle} onClick={() => history.push('/')}>
                     <HomeIcon />
                 </IconButton>
-                <IconButton title="change language" color="inherit" className={classes.smallCircle} onClick={() => history.push('/languages')}>
-                    <TranslateIcon />
+                <IconButton title={t("change language")} onClick={handleLanguage} color="inherit" className={classes.smallCircle} >
+                    <img src={(t("CheckLanguage") === "vi") ? englishFlag : vietnamFlag} style={{ width: "100%" }} />
                 </IconButton>
             </div>
 

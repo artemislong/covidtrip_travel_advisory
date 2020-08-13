@@ -1,25 +1,24 @@
-import React, { useContext, useState, useEffect } from 'react'
-
+import React, { useContext, } from 'react'
+import { useTranslation } from 'react-i18next';
 import ClassesContext from './../context/classesContext';
 import AboutInfo from './components/AboutInfo';
-import UpdateCards from './components/UpdateCards';
 import SearchSelect from './components/SearchSelect';
-import LoaderDoggo from './components/LoaderDoggo';
+import shiba from './../images/shiba.gif';
 //materialUI
-import { Grid, Hidden } from '@material-ui/core';
-import { Container, Typography, Divider } from '@material-ui/core';
-import InputBase from '@material-ui/core/InputBase';
+import { Grid } from '@material-ui/core';
+import { Container, Typography } from '@material-ui/core';
+
 
 //api
 // import { getHome } from './../api/api';
 
 
-const Main = ({ location }) => {
+const Main = () => {
     const classes = useContext(ClassesContext);
     // const [approvedCards, setApprovedCards] = useState([]);
     // const [pendingCards, setPendingCards] = useState([]);
     window.scrollTo(0, 0);
-
+    const { t, i18n } = useTranslation();
     // //load cards
     // useEffect(() => {
     //     // Create an scoped async function in the hook
@@ -55,7 +54,7 @@ const Main = ({ location }) => {
         <Container className={classes.root}>
             <Grid container spacing={2} >
                 <Grid item lg={1} xl={2} >
-                    <img scr={LoaderDoggo} style={{ visibility: "hidden" }} />
+                    <img src={shiba} style={{ visibility: "hidden" }} />
                 </Grid>
                 <Grid item xs={12} lg={10} xl={6} >
                     <div style={{ marginTop: 50 }}>
@@ -63,11 +62,11 @@ const Main = ({ location }) => {
                         <SearchSelect />
                         <div className={` ${classes.homeWelcomeText} ${classes.flatContainer}`}>
                             <Typography component="h1" variant="h4" style={{ color: "#34515E" }}>
-                                Traveling during COVID-19 pandemic?
-                    </Typography>
+                                {t('Traveling during COVID-19 pandemic?')}
+                            </Typography>
                             <Typography component="h2" variant="h5" color="primary" className={classes.mainSubText}>
-                                Find essential information to for a safe and enjoyable trip
-                    </Typography>
+                                {t("Find essential information to for a safe and enjoyable trip")}
+                            </Typography>
                         </div>
                         <AboutInfo />
                     </div>

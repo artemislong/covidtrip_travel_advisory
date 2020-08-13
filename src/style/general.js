@@ -189,6 +189,7 @@ const stylingObject = (theme) => ({
     },
     covidCases: {
         width: "75%",
+        position: "relative",
         display: "flex",
         justifyContent: "space-around",
         alignItems: "center",
