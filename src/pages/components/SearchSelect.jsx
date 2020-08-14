@@ -1267,7 +1267,7 @@ const SearchSelect = ({ text = true }) => {
                 <Autocomplete
                     id="countries"
                     options={options}
-                    getOptionLabel={(option) => (option.value) ? countryConverter.getName(option.value, t("CheckLanguage")) : option.name}
+                    getOptionLabel={(option) => option.name}
                     style={{ width: "90%" }}
                     value={selected}
                     onChange={(event, newValue) => {

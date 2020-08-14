@@ -342,7 +342,7 @@ const Country = ({ match, location }) => {
                         </React.Fragment>}
 
                     </Grid>
-                    <Grid item xs={0} xl={1} />
+                    <Grid item xs={false} xl={1} />
 
 
                 </Grid>

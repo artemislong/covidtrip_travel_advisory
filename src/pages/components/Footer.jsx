@@ -26,7 +26,7 @@ const Footer = () => {
                     <div className={classes.footerImageContainer}>
                         <img src={dhdClan} className={classes.footerAboutUsImage} />
                         <Typography variant="body2" component="p" color="textPrimary">
-                            {t("AboutCreators")} <Link href="https://Twitch.tv/the_nexthor" target="_blank">Twitch.tv/the_nexthor</Link>
+                            {t("AboutCreators")} <Link rel="noreferrer" href="https://Twitch.tv/the_nexthor" target="_blank">Twitch.tv/the_nexthor</Link>
                         </Typography>
                     </div>
                 </Grid>
