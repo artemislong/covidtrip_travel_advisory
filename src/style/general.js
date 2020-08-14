@@ -271,6 +271,12 @@ const stylingObject = (theme) => ({
             padding: "10px 0px",
         },
     },
+    govContainer: {
+        padding: "20px 40px",
+        [theme.breakpoints.down(500)]: {
+            padding: "20px 20px",
+        },
+    },
     containmentPolicies: {
         margin: "30px auto",
         width: "100%",
@@ -279,6 +285,13 @@ const stylingObject = (theme) => ({
         overflow: "visible"
     },
     dataPieceContainer: {
+        position: "relative",
+        margin: "20px auto 10px auto",
+        width: "auto",
+        //maxWidth: 200,
+
+    },
+    covidPieceContainer: {
         position: "relative",
         margin: "20px auto 10px auto",
         width: "auto",
@@ -435,7 +448,7 @@ const stylingObject = (theme) => ({
         justifyContent: "space-between",
         alignItems: "center",
         height: "auto",
-        padding: "5px 0px"
+        padding: 5
         //  width: "100%"
     },
     title: {

@@ -13,8 +13,8 @@ const LoaderDoggo = () => {
                 <img src={shiba} style={{ width: "100%" }} />
                 <div style={{ background: "rgba(0,0,0,0.1)", width: "100%", height: "100%", position: "absolute", top: 0, left: 0 }} />
             </div>
-            <div style={{ position: "absolute", bottom: 20 }} >
-                <Typography variant="caption" color="textPrimary" align="center" component="h2" style={{ fontStyle: "italic", fontSize: "1em" }}>{t("One minute of patience")}<br />{t("ten years of peace")}</Typography>
+            <div style={{ position: "absolute", bottom: 100 }} >
+                <Typography variant="caption" color="textPrimary" align="center" component="h2" style={{ fontStyle: "italic", fontSize: "1em" }}>{t("Waking Charles up...")}</Typography>
             </div>
         </React.Fragment>
     );

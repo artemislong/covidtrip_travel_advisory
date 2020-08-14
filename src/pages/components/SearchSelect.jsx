@@ -1299,7 +1299,7 @@ const SearchSelect = ({ text = true }) => {
 
             </div>
             {text && <Typography color="textPrimary" variant="subtitle1">
-                {t(" Type and select any country or state")}
+                {t("Type and select any country or state")}
             </Typography>}
         </ div>
     )

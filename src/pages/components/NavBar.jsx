@@ -99,8 +99,8 @@ export default function NavBar({ t }) {
             <AppBar className={classes.appBarShadow}>
                 <Toolbar className={classes.toolbar}>
                     <Hidden xsDown>
-                        <Typography className={classes.title} onClick={() => history.push('/')} variant="h6" style={{ marginLeft: 10 }}>
-                            New Normal
+                        <Typography component="h2" className={classes.title} onClick={() => history.push('/')} variant="h6" style={{ marginLeft: 10 }}>
+                            Travel In Covid
                         </Typography>
                     </Hidden>
 

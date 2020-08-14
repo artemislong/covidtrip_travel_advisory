@@ -190,7 +190,7 @@ const content = {
                 color: "blue"
             },
             2: {
-                label: "coordinated public information campaign (eg across traditional and social media",
+                label: "coordinated public information campaign",
                 color: "green"
             },
         },

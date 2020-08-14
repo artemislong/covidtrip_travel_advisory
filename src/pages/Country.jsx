@@ -19,6 +19,7 @@ import history from './../utils/history';
 //utils
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
+import { Helmet } from "react-helmet";
 //components
 import Sources from './components/Sources';
 
@@ -36,8 +37,8 @@ const GovernmentResponse = ({ dataObj }) => {
         <React.Fragment>
             {/* // <div className={`${classes.flatContainer} ${classes.containmentPolicies} ${classes[`${themeColor}Shadow`]}`}> */}
 
-            <div style={{ padding: "20px 40px" }}>
-                <Typography variant="h5" color="textSecondary" style={{ marginBottom: 10 }}>
+            <div className={classes.govContainer}>
+                <Typography variant="h5" component="h3" color="textSecondary" style={{ marginBottom: 10 }}>
                     {t("Containment policies")}
                 </Typography>
                 {dataObj.containmentArray &&
@@ -53,8 +54,8 @@ const GovernmentResponse = ({ dataObj }) => {
             {/* // </div>  */}
             {/* <div className={`${classes.flatContainer} ${classes.containmentPolicies}`} style={{marginTop: -40, zIndex: 10}}> */}
 
-            <div style={{ padding: "20px 40px" }}>
-                <Typography variant="h5" color="textSecondary" style={{ marginBottom: 10 }}>
+            <div className={classes.govContainer}>
+                <Typography variant="h5" component="h3" color="textSecondary" style={{ marginBottom: 10 }}>
                     {t("Health policies")}
                 </Typography>
                 {dataObj.healthArray && <Grid container >
@@ -82,7 +83,7 @@ const TravelAdvisory = ({ obj, handleThemeColor }) => {
     console.log("travel", obj)
     return (
         <div className={`${classes.flatContainer} ${classes.travelAdvisory} ${classes[`${color}Shadow`]}`}>
-            <Typography variant="subtitle1" color="textSecondary" style={{ position: "absolute", top: 5, left: 10, fontSize: "1.1em" }}>
+            <Typography component="h2" variant="subtitle1" color="textSecondary" style={{ position: "absolute", top: 5, left: 10, fontSize: "1.1em" }}>
                 {t("Travel advisory")}
             </Typography>
 
@@ -120,7 +121,7 @@ const MobilityCards = ({ dataObj }) => {
                             </Typography>
                         </div>
 
-                        <Typography component="p" variant="subtitle1" color="textSecondary" className={classes.mobilityCategory}>
+                        <Typography component="h3" variant="subtitle1" color="textSecondary" className={classes.mobilityCategory}>
                             {t(c.text)}
                         </Typography>
 
@@ -138,7 +139,7 @@ const DataPiece = ({ data }) => {
     const color = data.color;
 
     return <div className={classes.dataPieceContainer}>
-        <Typography variant="subtitle1" color="textPrimary" style={{ position: "absolute", bottom: "110%", left: -5, fontSize: "1.2em", lineHeight: "1.1em" }}>
+        <Typography variant="subtitle1" component="h4" color="textPrimary" style={{ position: "absolute", bottom: "130%", left: -5, fontSize: "1.2em", lineHeight: "1.1em" }}>
             {t(data.title)}
         </Typography>
         <div className={classes.dataPieceContent}>
@@ -161,8 +162,8 @@ const CovidData = ({ data, icon, label, color }) => {
     const classes = useContext(ClassesContext);
     const Icon = icon;
 
-    return <div className={classes.dataPieceContainer}>
-        <Typography variant="subtitle1" color="textPrimary" style={{ position: "absolute", bottom: "110%", left: 0, fontSize: "1.2em", lineHeight: "1.1em" }}>
+    return <div className={classes.covidPieceContainer}>
+        <Typography variant="subtitle1" component="h3" color="textPrimary" style={{ position: "absolute", bottom: "110%", left: 0, fontSize: "1.2em", lineHeight: "1.1em" }}>
             {t(label)}
         </Typography>
         <div className={classes.dataPieceContent}>
@@ -248,6 +249,11 @@ const Country = ({ match, location }) => {
 
     return (
         <React.Fragment>
+            <Helmet>
+                <title>{`${countryConverter.getName(match.params.id, t("CheckLanguage"))} - TravelinCovid`}</title>
+                <meta name="description"
+                    content="Newest information on travel restrictions, containment and health policies, and other helpful information for you to make a right decision to travel during COVID-19 pandemic" />
+            </Helmet>
             <Zoom
                 in={loading}
 
@@ -260,11 +266,11 @@ const Country = ({ match, location }) => {
                     <HomeIcon style={{ fontSize: "2em" }} />
                 </Button> */}
                 <Grid container  >
-                    <Grid item xs={0} xl={1} />
+                    <Grid item xs={false} xl={1} />
                     <Grid item xs={12} lg={7} xl={6} >
                         <div style={{ width: "100%", margin: "0px auto" }}>
                             <div className={classes.countryNameFlag}>
-                                <Typography variant="h3" color="textSecondary" style={{ fontWeight: 600 }}>
+                                <Typography variant="h3" color="textSecondary" component="h1" style={{ fontWeight: 600 }}>
                                     {countryConverter.getName(match.params.id, t("CheckLanguage"))}
                                 </Typography>
                                 {/* <img src={vietnamFlag} className={classes.countryFlag} /> */}
@@ -290,10 +296,10 @@ const Country = ({ match, location }) => {
 
                                 <div style={{ padding: 10 }}>
                                     <div className={classes.travelRestriction}>
-                                        <Typography variant="h5" color="textPrimary" >
+                                        <Typography variant="h5" component="h2" color="textPrimary" >
                                             {t("Travel restrictions")}
                                         </Typography>
-                                        <Typography variant="subtitle1" color="textSecondary" align="justify" style={{ padding: "10px 20px", lineHeight: "1.4em" }}>
+                                        <Typography variant="subtitle1" component="h3" color="textSecondary" align="justify" style={{ padding: "10px 20px", lineHeight: "1.4em" }}>
                                             {country.travelInfo.mainText}
                                         </Typography>
                                     </div>
@@ -315,18 +321,18 @@ const Country = ({ match, location }) => {
                         </div>
                     </Grid>
 
-                    <Grid item xs={0} xl={1} />
+                    <Grid item xs={false} xl={1} />
 
                     {/* ==================Containment Policies======================= */}
                     <Grid item xs={12} lg={4} xl={3} style={{ margin: "0px auto" }}>
                         {/* ==============mobility=============== */}
-                        {country.mobilityInfo && <React.Fragment>  <Typography variant="h5" color="textPrimary" style={{ marginBottom: 20 }}>
+                        {country.mobilityInfo && <React.Fragment>  <Typography variant="h5" component="h2" color="textPrimary" style={{ marginBottom: 20 }}>
                             {t("Mobility trends")}
                         </Typography>
 
                             <MobilityCards dataObj={country.mobilityInfo.array} />
 
-                            <Typography variant="body1" color="textSecondary"
+                            <Typography variant="body2" color="textSecondary"
                                 style={{ lineHeight: 1.1, marginTop: 10 }}>
                                 {t("The value is relative to the median value of the corresponding days of the first 5 weeks of 2020.")}
                             </Typography>

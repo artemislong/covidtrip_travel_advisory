@@ -38,7 +38,7 @@ const Footer = () => {
                 </Grid>
                 <Grid item xs={12} lg={4} style={{ padding: 10, maxWidth: 400 }}>
                     <Typography variant="h5" component="h3" align="center" color="textPrimary" style={{ padding: 10 }}>
-                        {t("Colaborate")}
+                        {t("Collaborate")}
                     </Typography>
                     <div className={classes.footerImageContainer}>
                         <Typography variant="subtitle2" align="justify" component="p" color="textPrimary">

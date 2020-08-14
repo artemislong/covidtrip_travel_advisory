@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import ReactGA from 'react-ga';
 //styling
 import './App.css';
 import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
@@ -16,7 +17,7 @@ import Country from './pages/Country';
 //context
 import ClassesContext from './context/classesContext';
 import ScrollToTop from './utils/ScrollToTop';
-
+import history from './utils/history'
 //-------styling hooks------
 const useStyles = makeStyles(stylingObject);
 
@@ -24,6 +25,14 @@ const useStyles = makeStyles(stylingObject);
 function App() {
   const classes = useStyles();
   ScrollToTop();
+
+  ReactGA.initialize('UA-175442767-1');
+  history.listen(location => {
+    ReactGA.set({ page: location.pathname }); // Update the user's current page
+    ReactGA.pageview(location.pathname); // Record a pageview for the given page
+  });
+
+
   return (
     <ThemeProvider theme={theme}>
       <ClassesContext.Provider value={classes}>
@@ -32,9 +41,9 @@ function App() {
           <ToastContainer />
           <Switch>
             {/* <Route exact path="/languages" render={(props) => <Languages {...props} />} /> */}
+            <Route exact path="/livingroom" render={(props) => <Main {...props} />} />
             <Route exact path="/:id" render={(props) => <Country {...props} />} />
-            <Route exact path="" render={(props) => <Main {...props} />} />
-            <Redirect from="*" to="" />
+            <Redirect from="*" to="/livingroom" />
           </Switch>
         </Container>
         <Footer />

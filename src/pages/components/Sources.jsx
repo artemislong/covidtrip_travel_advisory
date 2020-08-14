@@ -25,21 +25,24 @@ const Sources = () => {
         { url: "https://www.kayak.com/travel-restrictions", img: kayakLogo, title: "Kayak" },
         { url: "https://www.travel-advisory.info/", img: traveladvisoryLogo, title: "Travel Advisory API" },]
     return (
-        <div style={{ margin: "30px 0px 20px 0px" }}>
+        <div style={{ margin: "60px 0px 20px 0px" }}>
             <Typography variant="h5" color="textPrimary" >
                 {t("Our data sources")}
             </Typography>
             <Grid container spacing={1}>
-                {sourcesArray.map(s => <Grid item xs={6} md={4} ><a href={s.url} target="_blank" style={{ cursor: "pointer", textDecoration: "none" }}>
+                {sourcesArray.map(s => <Grid key={s.title} item xs={6} md={4} ><a href={s.url} target="_blank" style={{ cursor: "pointer", textDecoration: "none" }}>
                     <div style={{ height: 80, margin: "10px auto", width: "100%", display: "flex", justifyContent: "center" }}>
-                        <img src={s.img} style={{ height: "100%", maxWidth: "100%", borderRadius: 10 }} />
+                        <img aria-label={`Our data source is ${s.title}`} src={s.img} style={{ height: "100%", maxWidth: "100%", borderRadius: 10 }} />
                     </div>
-                    <Typography variant="subtitle2" color="textPrimary" align="center" style={{ width: "100%", margin: "0px auto" }}>
+                    <Typography variant="subtitle2" color="textPrimary" align="center" component="span" style={{ width: "100%", margin: "0px auto" }}>
                         {s.title}
                     </Typography>
                 </a></Grid>)}
             </Grid>
-
+            <Typography variant="body2" align="justify" color="textSecondary"
+                style={{ lineHeight: 1.1, marginTop: 10 }}>
+                {t("Although the data is collected from reputable sources, we cannot assure the accuracy of our content. That is the trade-off of using real-time data. Please reach out to travel agencies or local authorities for an up-to-date and reliable information.")}
+            </Typography>
 
         </div>
     )

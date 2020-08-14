@@ -19,7 +19,7 @@ const AboutInfo = () => {
                     <div className={classes.aboutInfoImageContainer} >
                         <img src={c.img} className={classes.aboutInfoImage} />
                     </div>
-                    <Typography component="p" variant="subtitle1" color="textSecondary" align="center" style={{ width: "100%", lineHeight: 1.2, marginTop: 20 }}>
+                    <Typography component="h3" variant="subtitle1" color="textSecondary" align="center" style={{ width: "100%", lineHeight: 1.2, marginTop: 20 }}>
                         {c.text}
                     </Typography>
                 </div>
