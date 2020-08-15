@@ -1,4 +1,5 @@
 {
+    "CheckLanguage": "en",
     "Traveling during COVID-19 pandemic?": "Traveling during COVID-19 pandemic?",
     "Find essential information for a safe and enjoyable trip": "Find essential information for a safe and enjoyable trip",
     "Travel restrictions": "Travel restrictions",
@@ -71,7 +72,7 @@
     "only those who have symptoms and meet specific criteria": "only those who have symptoms and meet specific criteria",
     "testing of anyone showing Covid-19 symptoms": "testing of anyone showing Covid-19 symptoms",
     "open public testing": "open public testing",
-    "Contact tracing": "Contact tracing",
+    "Contact tracing": "contact tracing",
     "no contact tracing": "no contact tracing",
     "limited contact tracing/not done for all cases": "limited contact tracing/not done for all cases",
     "comprehensive contact tracing; done for all identified cases": "comprehensive contact tracing; done for all identified cases",
@@ -89,5 +90,7 @@
     "Information is not available at the moment": "Information is not available at the moment",
     "We apologize for not being able to help you...": "We apologize for not being able to help you...",
     "Our data sources": "Our data sources",
-    "Although the data is collected from reputable sources, we cannot assure the accuracy of our content. That is the trade-off of using real-time data. Please reach out to travel agencies or local authorities for an up-to-date and reliable information.": "Although the data is collected from reputable sources, we cannot assure the accuracy of our content. That is the trade-off of using real-time data. Please reach out to travel agencies or local authorities for an up-to-date and reliable information."
+    "Although the data is collected from reputable sources, we cannot assure the accuracy of our content. That is the trade-off of using real-time data. Please reach out to travel agencies or local authorities for an up-to-date and reliable information.": "Although the data is collected from reputable sources, we cannot assure the accuracy of our content. That is the trade-off of using real-time data. Please reach out to travel agencies or local authorities for an up-to-date and reliable information.",
+    "Newest information on travel restrictions, containment and health policies, and other helpful information for you to make a right decision to travel during COVID-19 pandemic": "Newest information on travel restrictions, containment and health policies, and other helpful information for you to make a right decision to travel during COVID-19 pandemic",
+    "TravelinCovid - Real-time country specific information for travelers": "TravelinCovid - Real-time country specific information for travelers"
 }

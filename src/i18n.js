@@ -2,6 +2,7 @@
 
 import translationEN from './languages/english.json';
 import translationVI from './languages/vietnamese.json';
+import translationRU from './languages/russian.json';
 
 import i18n from "i18next";
 import { initReactI18next } from 'react-i18next';
@@ -14,10 +15,10 @@ const resources = {
     },
     vi: {
         translation: translationVI
+    },
+    ru: {
+        translation: translationRU
     }
-    // ru: {
-    //     translation: translationRU
-    // }
 };
 
 

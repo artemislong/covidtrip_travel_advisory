@@ -87,7 +87,7 @@ const TravelAdvisory = ({ obj, handleThemeColor }) => {
                 {t("Travel advisory")}
             </Typography>
 
-            <Typography variant="h6" color="textPrimary" style={{ fontWeight: 600, maxWidth: "90%" }}
+            <Typography variant="h6" color="textPrimary" align="center" style={{ fontWeight: 600, maxWidth: "90%", lineHeight: 1.2 }}
                 className={classes[`${color}DataText`]}>
                 {(obj.title) ? t(obj.title) : t("...data is not available")}
             </Typography>
@@ -139,7 +139,7 @@ const DataPiece = ({ data }) => {
     const color = data.color;
 
     return <div className={classes.dataPieceContainer}>
-        <Typography variant="subtitle1" component="h4" color="textPrimary" style={{ position: "absolute", bottom: "130%", left: -5, fontSize: "1.2em", lineHeight: "1.1em" }}>
+        <Typography variant="subtitle1" component="h4" color="textPrimary" style={{ marginLeft: -5, fontSize: "1.2em", lineHeight: "1.1em", height: "2.4em" }}>
             {t(data.title)}
         </Typography>
         <div className={classes.dataPieceContent}>
@@ -147,7 +147,7 @@ const DataPiece = ({ data }) => {
             <div className={`${classes[shape]} ${classes[`${color}Shadow`]}`} >
                 <Icon className={`${classes[`${color}DataText`]}`} />
             </div>
-            <div style={{ marginLeft: 20, width: "65%", maxWidth: 300 }}>
+            <div style={{ marginLeft: 20, width: "75%", maxWidth: 300 }}>
                 <Typography variant="subtitle1" color="textSecondary" style={{ lineHeight: 1.2 }}>
                     {t(data.label)}
                 </Typography>

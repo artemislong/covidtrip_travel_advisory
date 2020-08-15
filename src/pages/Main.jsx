@@ -55,7 +55,7 @@ const Main = () => {
         <Container className={classes.root}>
             <Helmet> <title>TravelinCovid - Real-time country specific information for travelers</title>
                 <meta name="description"
-                    content="Newest information on travel restrictions, containment and health policies, and other helpful information for you to make a right decision to travel during COVID-19 pandemic" />
+                    content={t("Newest information on travel restrictions, containment and health policies, and other helpful information for you to make a right decision to travel during COVID-19 pandemic")} />
             </Helmet>
             <Grid container spacing={2} >
                 <Grid item xs={0} lg={1} xl={2} >

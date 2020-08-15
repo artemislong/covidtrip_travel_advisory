@@ -59,7 +59,7 @@ const NavMenu = () => {
                     onClose={handleClose}
                 >
                     <MenuItem onClick={() => handleLanguage('en')}>English</MenuItem>
-                    {/* <MenuItem onClick={() => handleLanguage('ru')}>Pусский</MenuItem> */}
+                    <MenuItem onClick={() => handleLanguage('ru')}>Pусский</MenuItem>
                     <MenuItem onClick={() => handleLanguage('vi')}>Tiếng Việt</MenuItem>
                     <MenuItem onClick={handleClose}><a href="https://forms.gle/P6JVpjnNKx6SNLLS6" target="_blank" style={{ textDecoration: "none", color: "inherit" }}>{t("Add language")}<OpenInNewIcon style={{ fontSize: 'inherit' }} /></a></MenuItem>
                 </Menu>

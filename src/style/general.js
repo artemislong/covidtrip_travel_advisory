@@ -302,7 +302,7 @@ const stylingObject = (theme) => ({
         display: "flex",
         justifyContent: "flex-start",
         alignItems: "flex-start",
-        margin: "30px auto 10px auto",
+        margin: "10px auto 10px auto",
         [theme.breakpoints.down(500)]: {
             justifyContent: "flex-start",
         },

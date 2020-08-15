@@ -34,7 +34,7 @@ const Sources = () => {
                     <div style={{ height: 80, margin: "10px auto", width: "100%", display: "flex", justifyContent: "center" }}>
                         <img aria-label={`Our data source is ${s.title}`} src={s.img} style={{ height: "100%", maxWidth: "100%", borderRadius: 10 }} />
                     </div>
-                    <Typography variant="subtitle2" color="textPrimary" align="center" component="span" style={{ width: "100%", margin: "0px auto" }}>
+                    <Typography variant="subtitle2" color="textPrimary" align="center" component="p" style={{ width: "100%", margin: "0px auto" }}>
                         {s.title}
                     </Typography>
                 </a></Grid>)}
