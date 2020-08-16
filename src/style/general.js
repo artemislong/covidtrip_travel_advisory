@@ -506,9 +506,9 @@ const stylingObject = (theme) => ({
 
     //_______________________footer bar__________________________
     footerContainer: {
-        width: "100vw", height: "100vh",
+        width: "100%", height: "auto",
         position: "relative",
-        padding: 10,
+        padding: 20,
         boxSizing: "border-box",
         paddingTop: 30,
         background: " #1e323e",

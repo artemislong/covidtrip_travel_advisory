@@ -19,7 +19,7 @@ const Footer = () => {
                 © NewNormal 2020
                     </Typography>
             <Grid container >
-                <Grid item xs={12} lg={4} style={{ padding: 10, maxWidth: 400 }}>
+                <Grid item xs={12} md={6} lg={4} style={{ padding: 10 }}>
                     <Typography variant="h5" component="h3" color="textPrimary" align="center" style={{ padding: 10 }}>
                         {t("About us")}
                     </Typography>
@@ -30,13 +30,13 @@ const Footer = () => {
                         </Typography>
                     </div>
                 </Grid>
-                <Grid item xs={12} lg={4} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                <Grid item xs={12} md={6} lg={4} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                     <Typography variant="subtitle1" align="justify" component="p" color="textPrimary">
 
                         {t("Technical")}
                     </Typography>
                 </Grid>
-                <Grid item xs={12} lg={4} style={{ padding: 10, maxWidth: 400 }}>
+                <Grid item xs={12} lg={4} style={{ padding: 10 }}>
                     <Typography variant="h5" component="h3" align="center" color="textPrimary" style={{ padding: 10 }}>
                         {t("Collaborate")}
                     </Typography>

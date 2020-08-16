@@ -58,12 +58,12 @@ const GovernmentResponse = ({ dataObj }) => {
                 <Typography variant="h5" component="h3" color="textSecondary" style={{ marginBottom: 10 }}>
                     {t("Health policies")}
                 </Typography>
-                {dataObj.healthArray && <Grid container >
+                {(dataObj.healthArray && dataObj.healthArray[0]) && <Grid container >
                     {dataObj.healthArray.map(c => <Grid key={c.title} item xs={12} md={6} style={{ padding: 10 }}>
                         <DataPiece data={c} shape="square" color={c.color} />
                     </Grid>)}
                 </Grid>}
-                {!dataObj.healthArray && <Typography variant="subtitle1" color="textSecondary" style={{ marginBottom: 10 }}>
+                {!(dataObj.healthArray && dataObj.healthArray[0]) && <Typography variant="subtitle1" color="textSecondary" style={{ marginBottom: 10 }}>
                     {t("Oops, we don't have this data at the moment...")}
                 </Typography>}
 
@@ -173,10 +173,10 @@ const CovidData = ({ data, icon, label, color }) => {
             </div>
             <div style={{ marginLeft: 20, width: "auto", maxWidth: 300 }}>
                 {data && <React.Fragment><Typography variant="subtitle1" color="textPrimary" style={{ lineHeight: 1.2, fontSize: "1.7em", fontWeight: 500 }}>
-                    {(data.new) ? `+${data.new}` : (data.new === 0) ? 0 : t("no data")}
+                    {(data.new) ? `+${Intl.NumberFormat().format(data.new)}` : (data.new === 0) ? 0 : t("no data")}
                 </Typography>
                     <Typography variant="subtitle1" color="textSecondary" style={{ lineHeight: 1.2 }}>
-                        {(data.total) ? `${t("total of")} ${data.total}` : ""}
+                        {(data.total) ? `${t("total of")} ${Intl.NumberFormat().format(data.total)}` : ""}
                     </Typography>
                 </React.Fragment>}
                 {!data && <Typography variant="subtitle1" color="textPrimary" style={{ lineHeight: 1.2, fontSize: "1.7em", fontWeight: 500 }}>
@@ -225,6 +225,7 @@ const Country = ({ match, location }) => {
                 } else throw t("no data")
             } catch (exception) {
                 handleLoader(false);
+                console.log(exception)
                 toast.error(`😓 ${t("uhhh something went wrong")}`)
                 history.push('/')
                 //console.log("Server not responding or data unavailable", exception)

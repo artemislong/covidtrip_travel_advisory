@@ -53,7 +53,7 @@ const Main = () => {
 
     return (
         <Container className={classes.root}>
-            <Helmet> <title>TravelinCovid - Real-time country specific information for travelers</title>
+            <Helmet> <title>TravelinCovid - Newest information from all countries for travelers</title>
                 <meta name="description"
                     content={t("Newest information on travel restrictions, containment and health policies, and other helpful information for you to make a right decision to travel during COVID-19 pandemic")} />
             </Helmet>

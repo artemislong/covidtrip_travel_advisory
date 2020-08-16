@@ -264,7 +264,7 @@ const getTravelData = (restrictions, advisory) => {
     let result = {};
     //us advisory
     //console.log("advisory", advisory)
-    if (advisory) {
+    if (advisory && advisory.sources_active !== 0) {
         let adviseValue = Math.round(advisory.score);
         adviseValue = (adviseValue === 2) ? 1 : adviseValue; //if equals 2 then make it 1
         //4.5 - 5: extreme, 3.5 - 4.5 high risk, 2.5-3.5 medium, <2.5 low
@@ -284,11 +284,11 @@ const getTravelData = (restrictions, advisory) => {
     }
     //travel Text
     if (restrictions) {
-        result.mainText = restrictions.quick_report;
-        result.detailedText = restrictions.more_detailed_report;
+        result.mainText = (restrictions.quick_report) ? restrictions.quick_report : undefined;
+        result.detailedText = (restrictions.more_detailed_report) ? restrictions.more_detailed_report : undefined;
     } else {
-        result.mainText = "Information is not available at the moment";
-        result.detailedText = "We apologize for not being able to help you...";
+        result.mainText = undefined;
+        result.detailedText = undefined;
     }
     return result;
 };
@@ -348,6 +348,7 @@ const getPolicyData = (data) => {
         if (code[0] !== "h" && code[0] !== "c") continue; //ignore other values like e1
 
         let value = data.policies[i];
+        if (!value) continue; //remove undefined values
         let originalContent = content.policyContent[code];
         let dynamicContent = originalContent[value]; //get label and color
         let card = {
@@ -371,7 +372,6 @@ const processCountryData = (data, language) => {
     const generalInfo = (data.general_info) ? getGeneralInfo(data.general_info) : { cases: undefined, recovered: undefined };
 
     const travelInfo = getTravelData(data.travel_restrictions_info, data.travel_advisory);
-
 
 
     let mobilityInfo = undefined;
