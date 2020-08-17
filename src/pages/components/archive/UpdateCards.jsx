@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
-import ClassesContext from '../../context/classesContext';
+import ClassesContext from '../../../context/classesContext';
 import Truncate from 'react-truncate';
 import travel from "./../../images/travel.svg";
-import history from './../../utils/history';
+import history from '../../../utils/history';
 import vietnamFlag from './../../images/vietnamFlag.svg'
 
 import Card from '@material-ui/core/Card';

@@ -16,16 +16,14 @@ import Footer from './pages/components/Footer';
 import Country from './pages/Country';
 //context
 import ClassesContext from './context/classesContext';
-import ScrollToTop from './utils/ScrollToTop';
 import history from './utils/history'
-//-------styling hooks------
-const useStyles = makeStyles(stylingObject);
 
 //-------app function--------
 function App() {
-  const classes = useStyles();
-  ScrollToTop();
+  const classes = makeStyles(stylingObject)();
+  // ScrollToTop();
 
+  //google analytics
   ReactGA.initialize('UA-175442767-1');
   history.listen(location => {
     ReactGA.set({ page: location.pathname }); // Update the user's current page

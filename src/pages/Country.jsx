@@ -189,6 +189,7 @@ const CovidData = ({ data, icon, label, color }) => {
 
 const Country = ({ match, location }) => {
     const { t, i18n } = useTranslation();
+    //import language files to translate countries
     countryConverter.registerLocale(require(`i18n-iso-countries/langs/en.json`));
     countryConverter.registerLocale(require(`i18n-iso-countries/langs/vi.json`));
     countryConverter.registerLocale(require(`i18n-iso-countries/langs/ru.json`));
@@ -206,9 +207,6 @@ const Country = ({ match, location }) => {
 
 
     useEffect(() => {
-        const id = match.params.id;
-        console.log(id)
-        handleLoader(true)
         const ligma = async (id) => {
             // console.log('effect')
 
@@ -217,7 +215,7 @@ const Country = ({ match, location }) => {
                 console.log(response);
 
                 if (response.data) {
-                    const countryData = processCountryData(response.data, t("CheckLanguage"));
+                    const countryData = processCountryData(response.data);
                     console.log('processed data', countryData);
                     setCountry(countryData);
                     setTimeout(handleLoader, 1000) //1s loading after getting data
@@ -232,13 +230,16 @@ const Country = ({ match, location }) => {
             }
         }
 
+        const id = match.params.id;
+        console.log(id)
+        handleLoader(true)
         ligma(id); //send request
     }, [location])
 
 
     const handleLoader = (value) => {
-
-        setLoading(value)
+        let newValue = value;
+        setLoading(newValue)
         //console.log("fater changing loader", loading)
     };
 

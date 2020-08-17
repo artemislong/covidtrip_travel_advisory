@@ -1,5 +1,5 @@
 import axios from 'axios';
-import sampleData from './../utils/sampleData';
+
 
 //const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
 export const baseUrl = "https://covid-travel-api.herokuapp.com";

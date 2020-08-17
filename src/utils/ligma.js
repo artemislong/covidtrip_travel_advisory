@@ -367,7 +367,7 @@ const getPolicyData = (data) => {
     return result;
 };
 
-const processCountryData = (data, language) => {
+const processCountryData = (data) => {
 
     const generalInfo = (data.general_info) ? getGeneralInfo(data.general_info) : { cases: undefined, recovered: undefined };
 

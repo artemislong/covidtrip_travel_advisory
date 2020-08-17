@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet";
 import ClassesContext from './../context/classesContext';
 import AboutInfo from './components/AboutInfo';
 import SearchSelect from './components/SearchSelect';
-import shiba from './../images/shiba.gif';
 //materialUI
 import { Grid } from '@material-ui/core';
 import { Container, Typography } from '@material-ui/core';
@@ -16,40 +15,9 @@ import { Container, Typography } from '@material-ui/core';
 
 const Main = () => {
     const classes = useContext(ClassesContext);
-    // const [approvedCards, setApprovedCards] = useState([]);
-    // const [pendingCards, setPendingCards] = useState([]);
     window.scrollTo(0, 0);
     const { t, i18n } = useTranslation();
-    // //load cards
-    // useEffect(() => {
-    //     // Create an scoped async function in the hook
-    //     async function getCards() {
-    //         await loadCards();
-    //     }
-    //     // Execute the created function directly
-    //     getCards();
-    // }, []); //execute when component is rendered
 
-
-
-    // const loadCards = async () => {
-    //     //console.log("loading home cards") //home cards includes 8 approved and 8 pending
-    //     try {
-    //         const response = await getHome();
-    //         const homeSources = response.data;
-    //         const approved = [];
-    //         const pending = [];
-    //         //sorting sources
-    //         homeSources.map(h => {
-    //             if (h.status === "approved") approved.push(h);
-    //             if (h.status === "pending") pending.push(h);
-    //         })
-    //         setApprovedCards(approved);
-    //         setPendingCards(pending);
-    //     } catch (exception) {
-    //         console.log("Card load failed")
-    //     }
-    // };
 
     return (
         <Container className={classes.root}>
@@ -77,12 +45,7 @@ const Main = () => {
                     </div>
                 </Grid>
                 <Grid item xs={0} lg={1} />
-                <Grid item xs={12} xl={3}>
-                    {/* <Typography component="h3" variant="h6" color="textPrimary" style={{ marginTop: 20 }}>
-                        UPDATES
-                    </Typography>
-                    <UpdateCards /> */}
-                </Grid>
+                <Grid item xs={12} xl={3} />
 
             </Grid>
 
