@@ -1,16 +1,65 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# COVIDTRIP DOCUMENTATION
 
-## Available Scripts
+Table of content
 
-In the project directory, you can run:
 
-### `npm start`
+## App architecture
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Files of /src folder
+#### `Index.js` 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Cancel console.log in development mode:
+``` if (process.env.NODE_ENV !== 'development') {
+  console.log = () => { }
+}
+```
+
+Router wrapper (as suggested by React-router-dom documenttation)
+```<Router history={history}>
+    <App />
+  </ Router>,
+```
+
+#### `App.js` 
+
+Google analytics (ReactGA package):
+```  ReactGA.initialize('UA-175442767-1');
+  history.listen(location => {
+    ReactGA.set({ page: location.pathname }); // Update the user's current page
+    ReactGA.pageview(location.pathname); // Record a pageview for the given page
+  });
+```
+
+Routing (as suggested by React-router-dom documenttation): mannually passing props to acess params and location props as advised by docs
+```<Switch>
+            <Route exact path="/livingroom" render={(props) => <Main {...props} />} />
+            <Route exact path="/:id" render={(props) => <Country {...props} />} /> 
+            <Redirect from="*" to="/livingroom" />
+          </Switch>
+```
+
+Getting styling object
+``` <ThemeProvider theme={theme}>
+      ...
+    </ThemeProvider>
+```
+
+React context provider:
+```<ClassesContext.Provider value={classes}>
+      ...
+   </ClassesContext.Provider>
+```
+
+React-toastify component for the notification popup:
+```<ToastContainer />```
+
+### Subfolders of /src folder
+
+Covidtrip has the following folders in **/src** folder:
+
+#### pages 
+/src/pages
+Contains 2 components for each 
 
 ### `npm test`
 
