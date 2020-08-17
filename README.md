@@ -107,7 +107,7 @@ Covidtrip has the following folders in **/src** folder:
 
 #### pages 
 /src/pages
-Contains 2 components for each 
+Contains 2 components for each page and a components folder
 
 ##### `Main.jsx`
 Main home page
@@ -131,7 +131,7 @@ Some components are rendered dynamically (if data is missing then hidden or disp
 `useEffect function`
 Is called whenever the user navigates to the component or changes to a new country (url is changed), just like ComponentDidMount and ComponentDidUpdate
 
-```
+```javascript
     useEffect(() => {
       //defining a function that will set loading screen, fetch and process data, and handle errors.
         const ligma = async (id) => {
@@ -160,3 +160,72 @@ Is called whenever the user navigates to the component or changes to a new count
         ligma(id); //send request and process data
     }, [location]) //useEffect is executed whenever location property (from props, which is the URL parameters container) is changed
 ```
+
+##### `components`
+Contains all component and archive folder with unused components
+
+
+#### utils 
+/src/utils
+
+##### `history.js`
+gets a history object from react-router-dom to use later without complex import
+
+```javascript 
+import { createBrowserHistory as history } from 'history';
+
+export default history();
+```
+##### `ligma.js`
+gets country data and processes it into 4 objects (generalInfo, travelInfo, mobilityInfo, policyInfo) that are returned in 1 object
+
+
+
+#### styles 
+##### `theme.js`
+contains Material UI customized theme, an ordinary object
+
+##### `general.js`
+styling file in Material UI's way
+
+```javascript
+//==========defined some common variables for colors, shadows,...==========/
+const unColor = "rgba(91,185,149,0.8)";
+const blueWhiteShadow = "0px 12px 16px #EAF0F8";
+
+
+//using MUI's style functions
+let theme = createMuiTheme(themeObject); //passing customized theme
+theme = responsiveFontSizes(theme); //making fonts responsive
+
+const stylingObject = (theme) => ({
+   ...//example a class with a breakpoint
+    travelAdvisory: {
+        width: "70%",
+        margin: "20px auto",
+        height: 120,
+        position: "relative",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        [theme.breakpoints.down(500)]: {
+            width: "90%",
+        },
+},
+
+export {
+    stylingObject,
+    theme
+};
+```
+
+#### Other folders 
+
+##### `context`
+contains file for react context
+
+##### `image`
+contains all images
+
+##### `languages`
+contains all laguage json files
