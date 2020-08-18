@@ -2,10 +2,6 @@ import {
     createMuiTheme,
     responsiveFontSizes
 } from '@material-ui/core/styles';
-import {
-    fade,
-    makeStyles
-} from '@material-ui/core/styles';
 import themeObject from "./theme";
 // import vietnamFlag from "./../images/vietnamFlag.svg"
 // import englishFlag from "./../images/englishFlag.svg"

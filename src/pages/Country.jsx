@@ -214,17 +214,17 @@ const Country = ({ match, location }) => {
                 const response = await getCountry(id);
                 console.log(response);
 
-                if (response.data) {
+                if (response.data && !response.data.error) {
                     const countryData = processCountryData(response.data);
                     console.log('processed data', countryData);
                     setCountry(countryData);
                     setTimeout(handleLoader, 1000) //1s loading after getting data
                     //generalInfo, travelInfo, mobilityInfo, policyInfo
-                } else throw t("no data")
+                } else if (response.data.error) { throw t("wrongURL") } else throw t("unknown")
             } catch (exception) {
                 handleLoader(false);
                 console.log(exception)
-                toast.error(`😓 ${t("uhhh something went wrong")}`)
+                if (exception === "wrongURL") { toast.error(`😓 ${t("Please double check the URL")}`) } else toast.error(`😓 ${t("uhhh something went wrong")}`)
                 history.push('/')
                 //console.log("Server not responding or data unavailable", exception)
             }
