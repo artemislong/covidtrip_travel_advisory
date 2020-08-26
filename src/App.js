@@ -39,9 +39,9 @@ function App() {
           <ToastContainer />
           <Switch>
             {/* <Route exact path="/languages" render={(props) => <Languages {...props} />} /> */}
-            <Route exact path="/livingroom" render={(props) => <Main {...props} />} />
             <Route exact path="/:id" render={(props) => <Country {...props} />} />
-            <Redirect from="*" to="/livingroom" />
+            <Route exact path="" render={(props) => <Main {...props} />} />
+            <Redirect from="*" to="" />
           </Switch>
         </Container>
         <Footer />
