@@ -40,8 +40,8 @@ function App() {
           <Switch>
             {/* <Route exact path="/languages" render={(props) => <Languages {...props} />} /> */}
             <Route exact path="/:id" render={(props) => <Country {...props} />} />
-            <Route exact path="" render={(props) => <Main {...props} />} />
-            <Redirect from="*" to="" />
+            <Route exact path="/" render={(props) => <Main {...props} />} />
+            <Redirect from="*" to="/" />
           </Switch>
         </Container>
         <Footer />
