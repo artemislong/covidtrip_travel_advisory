@@ -166,7 +166,7 @@ const options = [
     {
         name: "Brazil",
         iso2: "BR",
-        iso3: "BRA"
+        value: "BRA"
     },
     {
         name: "British Indian Ocean Territory",
