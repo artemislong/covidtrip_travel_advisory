@@ -9,6 +9,8 @@ COVIDTRIP is a site that allows users to find COVID-19 policies for any country,
 - Built with a content management system (CMS) to manage data updates, track changes, and receive alerts.
 
 > **Update**: This project is no longer active due to discontinued financial support.
+> ![image](https://github.com/user-attachments/assets/6667ec3f-f802-479b-a66d-adc5f18e83d0)
+
 
 ---
 
