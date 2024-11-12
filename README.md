@@ -1,231 +1,90 @@
-# COVIDTRIP DOCUMENTATION
 
-Table of content
+# 🦠 COVIDTRIP Documentation
 
+COVIDTRIP is a site that allows users to find COVID-19 policies for any country, along with other key metrics to help plan trips accordingly. The platform gathers information from multiple APIs and sources, including Google and Johns Hopkins, and presents it in an easy-to-navigate format. 
 
-## Third-party packages
+**COVIDTRIP Key Features**:
+- Derives real-time data from multiple trusted sources.
+- Utilizes a custom web scraper, scheduled to update daily, to keep information fresh and relevant.
+- Built with a content management system (CMS) to manage data updates, track changes, and receive alerts.
 
-### General
-`"react": "^16.13.1"` default
+> **Update**: This project is no longer active due to discontinued financial support.
 
-`"react-scripts": "3.4.1"` default
+---
 
-`"react-router-dom": "^5.2.0"` for routing
-### HTTP
-`"axios": "^0.19.2"`
+## 📜 Table of Contents
+1. [📦 Third-Party Packages](#third-party-packages)
+2. [⚙️ App Architecture](#app-architecture)
+3. [🗂️ Files and Folders](#files-and-folders)
+4. [🌐 Routing and Navigation](#routing-and-navigation)
 
-### Internationalization
-`"i18n-iso-countries": "^6.0.0"`  converts iso2, iso3 to country names and supports multiple languages
+---
 
-`"i18next": "^19.6.3"` general internationalization assisting package
+### 📦 Third-Party Packages
 
-`"i18next-browser-languagedetector": "^5.0.1"` supplement for i18next package, detects browser language
+- **React**: Framework for building dynamic frontend components.
+- **react-router-dom**: For seamless navigation between pages.
+- **Axios**: Handles API requests to retrieve and post data.
+- **i18next** & **i18n-iso-countries**: Enable multilingual support and country code conversion.
+- **Moment.js**: Formats dates to adapt to different locales.
+- **react-toastify**: Displays notifications for success/errors.
+- **React-GA**: Integrates Google Analytics to track page usage.
+- **React-Helmet**: Dynamically updates meta tags for improved SEO.
 
-`"react-i18next": "^11.7.0"` supports i18next to work in a react-app
+---
 
-### Other utils
-`"moment": "^2.27.0"` date formating for different cases (languages)
+### ⚙️ App Architecture
 
-`"react-custom-scrollbars": "^4.2.1"` custom scrollbar within a component
+#### Overview of Main Files in /src
 
-`"react-ga": "^3.1.2"` connects Google analytics to a react-app
+1. **Index.js**
+   - Initializes the app with `Router`, provides styling via `ThemeProvider`, and global state with `ClassesContext`.
+   - **Google Analytics**: Tracks page views using `ReactGA`.
 
- `"react-helmet": "^6.1.0"` dynamic metatags within react components, for Search Engine Optimization
- 
-` "react-toastify": "^6.0.8"`  a handy popup to notify success or error
+2. **App.js**
+   - Handles routing and setup.
+   - Integrates notification popups through `ToastContainer` (react-toastify).
 
-### Unused for now
-`"g_state-management": "^1.1.6"` amazing state management package that replaces Redux and React Context
+---
 
-`"react-google-login": "^5.1.21"` google login assist
-   
-`"react-truncate": "^2.4.0"` truncate long texts
-    
+### 🗂️ Files and Folders
 
-## App architecture
+- **/pages**: Contains primary views for the site:
+  - **Main.jsx**: The homepage, including SEO-friendly dynamic meta tags and a scroll-to-top feature.
+  - **Country.jsx**: Displays country-specific COVID-19 data, loading a data analysis screen with dynamic components for missing data handling.
 
-### Files of /src folder
-#### `Index.js` 
+- **/components**: Houses reusable components, each with defined roles for displaying various data elements.
 
-Cancel console.log in development mode:
-```
-if (process.env.NODE_ENV !== 'development') {
-  console.log = () => { }
-}
-```
+- **/utils**: Helper functions and modules:
+  - **history.js**: Custom navigation handler.
+  - **ligma.js**: Processes API responses, returning data sections: `generalInfo`, `travelInfo`, `mobilityInfo`, and `policyInfo`.
 
-Router wrapper (as suggested by React-router-dom documenttation)
-```
-<Router history={history}>
-    <App />
-  </ Router>,
-```
+- **/styles**:
+  - **theme.js**: Custom Material-UI theme with responsive font settings.
+  - **general.js**: Contains styles for common UI components.
 
-#### `App.js` 
+- **Other Folders**:
+  - **/context**: Manages global React context.
+  - **/languages**: Contains JSON files for each supported language.
+  - **/image**: Stores static images used throughout the app.
 
-Google analytics (ReactGA package):
-```  
-ReactGA.initialize('UA-175442767-1');
-  history.listen(location => {
-    ReactGA.set({ page: location.pathname }); // Update the user's current page
-    ReactGA.pageview(location.pathname); // Record a pageview for the given page
-  });
-```
+---
 
-Routing (as suggested by React-router-dom documenttation): mannually passing props to acess params and location props as advised by docs
-```
-<Switch>
-            <Route exact path="/livingroom" render={(props) => <Main {...props} />} />
-            <Route exact path="/:id" render={(props) => <Country {...props} />} /> 
-            <Redirect from="*" to="/livingroom" />
- </Switch>
-```
+### 🌐 Routing and Navigation
 
-Getting styling object
-```
-<ThemeProvider theme={theme}>
-      ...
-    </ThemeProvider>
-```
+- **App Routing**: Defined in `App.js` with `react-router-dom`. Key routes:
+  - `/livingroom`: The homepage.
+  - `/:id`: Displays data for a specific country, identified by a URL parameter.
+  - `*`: Redirects unmatched paths to `/livingroom`.
 
-React context provider:
-```
-<ClassesContext.Provider value={classes}>
-      ...
-   </ClassesContext.Provider>
-```
+---
 
-React-toastify component for the notification popup:
-```
-<ToastContainer />
-```
+### 📝 Additional Notes
 
-### Subfolders of /src folder
+- **Internationalization**: Detects and adapts to the user’s browser language settings.
+- **Error Handling**: Shows error messages and redirects to the homepage if data retrieval fails.
+- **Dynamic Meta Tags**: Updates meta tags for each page dynamically via `React-Helmet` to support SEO.
 
-Covidtrip has the following folders in **/src** folder:
+This documentation provides a comprehensive overview of COVIDTRIP’s setup, features, and architecture, supporting both developers and stakeholders. For further details, consult the comments in each code file.
 
-
-#### pages 
-/src/pages
-Contains 2 components for each page and a components folder
-
-##### `Main.jsx`
-Main home page
-
-Uses Helmet component to make dynamic, multilingual metatags
-
-Scrolls to the top whenever the component is rendered
-```
-window.scrollTo(0, 0);
-```
-
-##### `Country.jsx`
-Country page
-
-Uses Helmet component to make dynamic, multilingual metatags
-
-When renders, it will display loading screen until completes fetching and data analyzing. 
-
-Some components are rendered dynamically (if data is missing then hidden or display default text, or only displays what data is available)
-
-`useEffect function`
-Is called whenever the user navigates to the component or changes to a new country (url is changed), just like ComponentDidMount and ComponentDidUpdate
-
-```javascript
-    useEffect(() => {
-      //defining a function that will set loading screen, fetch and process data, and handle errors.
-        const ligma = async (id) => {
-            try {
-                const response = await getCountry(id); //calling API function imported from /src/api
-              
-                if (response.data) {
-                    const countryData = processCountryData(response.data)); //if response data is available, process data into content. Function is imported from /src/utils/ligma.js
-                   
-                    setCountry(countryData); //set the whole data object as compoent's state
-                    setTimeout(handleLoader, 1000) //close loading screen after 1s
-                    //country data object's properties: generalInfo, travelInfo, mobilityInfo, policyInfo
-                } else throw t("no data") //throw error if no data
-            } catch (exception) {
-                handleLoader(false); //close loading screen
-                toast.error(`😓 ${t("uhhh something went wrong")}`) //push the toast popup to notify user about the error
-                history.push('/') //navigate back to home page
-            }
-        } //end defining ligma function
-        
-      //geting the country code from the URL by accessing React-router-dom's props
-        const id = match.params.id;
-      //enable loading screen
-        handleLoader(true)
-        
-        ligma(id); //send request and process data
-    }, [location]) //useEffect is executed whenever location property (from props, which is the URL parameters container) is changed
-```
-
-##### `components`
-Contains all component and archive folder with unused components
-
-
-#### utils 
-/src/utils
-
-##### `history.js`
-gets a history object from react-router-dom to use later without complex import
-
-```javascript 
-import { createBrowserHistory as history } from 'history';
-
-export default history();
-```
-##### `ligma.js`
-gets country data and processes it into 4 objects (generalInfo, travelInfo, mobilityInfo, policyInfo) that are returned in 1 object
-
-
-
-#### styles 
-##### `theme.js`
-contains Material UI customized theme, an ordinary object
-
-##### `general.js`
-styling file in Material UI's way
-
-```javascript
-//==========defined some common variables for colors, shadows,...==========/
-const unColor = "rgba(91,185,149,0.8)";
-const blueWhiteShadow = "0px 12px 16px #EAF0F8";
-
-
-//using MUI's style functions
-let theme = createMuiTheme(themeObject); //passing customized theme
-theme = responsiveFontSizes(theme); //making fonts responsive
-
-const stylingObject = (theme) => ({
-   ...//example a class with a breakpoint
-    travelAdvisory: {
-        width: "70%",
-        margin: "20px auto",
-        height: 120,
-        position: "relative",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        [theme.breakpoints.down(500)]: {
-            width: "90%",
-        },
-},
-
-export {
-    stylingObject,
-    theme
-};
-```
-
-#### Other folders 
-
-##### `context`
-contains file for react context
-
-##### `image`
-contains all images
-
-##### `languages`
-contains all laguage json files
+---
